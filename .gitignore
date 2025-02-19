@@ -1,0 +1,16 @@
+# Ignorar dependências do Node.js
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+
+# Ignorar arquivos de ambiente
+.env
+client/.env
+server/.env
+
