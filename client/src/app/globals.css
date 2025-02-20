@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Suaviza a troca de tema */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Definição de temas personalizados */
+:root {
+  --bg-color: #f3f4f6; /* Fundo claro original */
+  --text-color: #1f2937; /* Texto escuro original */
+  --card-bg: #ffffff; /* Fundo dos cards */
+  --card-border: #e5e7eb; /* Borda dos cards */
+}
+
+/* Dark Theme */
+.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: #1e1e1e;
+  --card-border: #333;
+}
