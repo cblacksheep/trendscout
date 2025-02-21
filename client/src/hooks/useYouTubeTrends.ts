@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { YouTubeVideo } from "../types/youtubeTrends";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 export function useYouTubeTrends(region: string) {
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ export function useYouTubeTrends(region: string) {
     async function fetchTrends() {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/youtube-trends?region=${region}`
+          `${API_BASE_URL}/api/youtube-trends?region=${region}`
         );
         const data = await response.json();
         setVideos(data.videos);

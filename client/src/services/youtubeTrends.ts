@@ -1,11 +1,12 @@
 import { YouTubeVideo, RawYouTubeVideo } from "../types/youtubeTrends";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export async function fetchYouTubeTrends(
   regionCode: string = "US"
 ): Promise<YouTubeVideo[]> {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/youtube-trends?region=${regionCode}`
+      `${API_BASE_URL}/api/youtube-trends?region=${regionCode}`
     );
     const data = await response.json();
 
@@ -13,9 +14,9 @@ export async function fetchYouTubeTrends(
       title: video.snippet.title,
       videoId: video.id,
       description: video.snippet.description,
-      views: Number(video.statistics?.viewCount || 0), // Se não existir, assume 0
-      likes: Number(video.statistics?.likeCount || 0), // Se não existir, assume 0
-      comments: Number(video.statistics?.commentCount || 0), // Se não existir, assume 0
+      views: Number(video.statistics?.viewCount || 0),
+      likes: Number(video.statistics?.likeCount || 0),
+      comments: Number(video.statistics?.commentCount || 0),
       channel: video.snippet.channelTitle,
       publishedAt: video.snippet.publishedAt,
       thumbnailUrl: video.snippet.thumbnails.high.url,

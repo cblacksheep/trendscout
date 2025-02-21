@@ -1,9 +1,8 @@
 import { GoogleTrend, RawGoogleTrend } from "../types/googleTrends";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export async function fetchGoogleTrends(geo = "US"): Promise<GoogleTrend[]> {
-  const response = await fetch(
-    `http://localhost:5000/api/google-trends?geo=${geo}`
-  );
+  const response = await fetch(`${API_BASE_URL}/api/google-trends?geo=${geo}`);
   const data = await response.json();
 
   console.log("🔍 Dados crus da API:", data);
@@ -19,9 +18,9 @@ export async function fetchGoogleTrends(geo = "US"): Promise<GoogleTrend[]> {
       exploreLink: `https://trends.google.com${trend.title.exploreLink}`,
       relatedQueries: trend.relatedQueries || [],
       imageUrl: trend.image?.imageUrl,
-      newsUrl: trend.image?.newsUrl, // Agora TypeScript aceita sem erro ✅
+      newsUrl: trend.image?.newsUrl,
       articles: trend.articles || [],
-      shareUrl: trend.shareUrl || "", // Se não existir, definimos um valor padrão
+      shareUrl: trend.shareUrl || "",
     };
   });
 }
